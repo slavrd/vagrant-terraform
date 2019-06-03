@@ -1,4 +1,4 @@
-# Vagrant xenial64 with terraform
+# Vagrant xenial64 with Terraform
 
 A vagrant project that builds a virtual box machine with xenial64 OS and terraform and some basic tools installed.
 
@@ -9,5 +9,8 @@ A vagrant project that builds a virtual box machine with xenial64 OS and terrafo
 
 ## Run
 
+* Set terraform version to env variable `tf_ver` e.g. `tf_ver=0.11.14`
 * Build machine - `vagrant up`
 * Destroy machine - `vagrant destroy`
+
+In case the `tf_ver` env variable is not set the Vagrant project is set to default to ver 0.12.0
