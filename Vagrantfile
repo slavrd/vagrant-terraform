@@ -13,5 +13,14 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell",
     inline: "curl -sSf -o /tmp/tf_install.sh https://raw.githubusercontent.com/slavrd/bash-various-scripts/master/install_hc_product.sh \
             && bash /tmp/tf_install.sh terraform #{tf_ver} linux amd64"
-            
+
+  if Pathname.new("~/.terraformrc").exist?()
+    config.vm.provision "file", source: "~/.terraformrc", destination: ".terraformrc"
+  end
+
+  if Pathname.new("~/.aws/credentials").exist?()
+    config.vm.provision "shell", inline: "[ ! -d .aws ] && mkdir /home/vagrant/.aws && chown vagrant:vagrant /home/vagrant/.aws"
+    config.vm.provision "file", source: "~/.aws/credentials", destination: "/home/vagrant/.aws/credentials"
+  end
+           
 end
