@@ -19,7 +19,7 @@ If the user has configured TF CLI `~/.terraformrc` and/or AWS credentials file `
 
 ## Examples
 
-* Build a VM with s specified TF version:
+* Build a VM with specified TF version:
 
 ```Bash
 tf_ver=0.11.14 vagrant up # build VM
