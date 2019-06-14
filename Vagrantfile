@@ -1,7 +1,7 @@
 Vagrant.configure("2") do |config|
 
   # set default terraform version
-  tf_ver = "0.12.0"
+  tf_ver = "0.12.2"
   if ENV["tf_ver"] != nil && ENV["tf_ver"] != ""
     tf_ver = ENV["tf_ver"]
   end
@@ -14,13 +14,13 @@ Vagrant.configure("2") do |config|
     inline: "curl -sSf -o /tmp/tf_install.sh https://raw.githubusercontent.com/slavrd/bash-various-scripts/master/install_hc_product.sh \
             && bash /tmp/tf_install.sh terraform #{tf_ver} linux amd64"
 
-  if Pathname.new("~/.terraformrc").exist?()
+  if FileTest.exist?("#{ENV["HOME"]}/.terraformrc")
     config.vm.provision "file", source: "~/.terraformrc", destination: ".terraformrc"
   end
 
-  if Pathname.new("~/.aws/credentials").exist?()
+  if FileTest.exist?("#{ENV["HOME"]}/.aws/credentials")
     config.vm.provision "shell", inline: "[ ! -d .aws ] && mkdir /home/vagrant/.aws && chown vagrant:vagrant /home/vagrant/.aws"
-    config.vm.provision "file", source: "~/.aws/credentials", destination: "/home/vagrant/.aws/credentials"
+    config.vm.provision "file", source: "#{ENV["HOME"]}/.aws/credentials", destination: "/home/vagrant/.aws/credentials"
   end
            
 end
