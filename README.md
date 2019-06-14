@@ -13,4 +13,6 @@ A vagrant project that builds a virtual box machine with xenial64 OS and terrafo
 * Build machine - `vagrant up`
 * Destroy machine - `vagrant destroy`
 
-In case the `tf_ver` env variable is not set the Vagrant project is set to default to ver 0.12.0
+In case the `tf_ver` env variable is not set the Vagrant project is set to default to ver 0.12.2
+
+If the user has configured TF CLI `~/.terraformrc` and/or AWS credentials file `~/.aws/credentials` they will also be copied to the VM
