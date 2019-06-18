@@ -19,7 +19,7 @@ Vagrant.configure("2") do |config|
   end
 
   if FileTest.exist?("#{ENV["HOME"]}/.aws/credentials")
-    config.vm.provision "shell", inline: "[ ! -d /home/vagrant/.aws ] && mkdir /home/vagrant/.aws && chown vagrant:vagrant /home/vagrant/.aws"
+    config.vm.provision "shell", inline: "[ ! -d /home/vagrant/.aws ] && mkdir /home/vagrant/.aws && chown vagrant:vagrant /home/vagrant/.aws || exit 0"
     config.vm.provision "file", source: "#{ENV["HOME"]}/.aws/credentials", destination: "/home/vagrant/.aws/credentials"
   end
            
