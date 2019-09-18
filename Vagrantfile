@@ -1,7 +1,7 @@
 Vagrant.configure("2") do |config|
 
   # set default terraform version
-  tf_ver = "0.12.8"
+  tf_ver = "0.12.9"
   if ENV["tf_ver"] != nil && ENV["tf_ver"] != ""
     tf_ver = ENV["tf_ver"]
   end
