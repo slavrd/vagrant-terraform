@@ -1,6 +1,6 @@
-# Vagrant xenial64 with Terraform
+# Vagrant Ubuntu with Terraform
 
-A vagrant project that builds a virtual box machine with xenial64 OS and terraform and some basic tools installed.
+A vagrant project that builds a virtual box machine with Ubuntu OS and terraform and some basic tools installed.
 
 ## Prerequisites
 
@@ -13,7 +13,7 @@ A vagrant project that builds a virtual box machine with xenial64 OS and terrafo
 * Build machine - `vagrant up`
 * Destroy machine - `vagrant destroy`
 
-In case the `tf_ver` env variable is not set the Vagrant project is set to default to ver `0.12.9`
+In case the `tf_ver` env variable is not set the Vagrant project is set to default to the value set for the variable `tf_ver` in the Vagrantfile.
 
 If the user has configured TF CLI `~/.terraformrc` and/or AWS credentials file `~/.aws/credentials` they will also be copied to the VM
 
