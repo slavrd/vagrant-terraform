@@ -6,7 +6,7 @@ Vagrant.configure("2") do |config|
     tf_ver = ENV["tf_ver"]
   end
 
-  config.vm.box = "slavrd/xenial64"
+  config.vm.box = "slavrd/bionic64"
   config.vm.provision "shell",
     inline: "sudo apt-get update >>/dev/null && sudo apt-get install -y curl vim git >>/dev/null"
 
