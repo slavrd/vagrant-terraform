@@ -7,6 +7,12 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.box = "slavrd/bionic64"
+
+  config.vm.provider "virtualbox" do |v|
+    v.memory = 2048
+    v.cpus = 2
+  end
+
   config.vm.provision "shell",
     inline: "sudo apt-get update >>/dev/null && sudo apt-get install -y curl vim git >>/dev/null"
 
