@@ -13,6 +13,9 @@ Vagrant.configure("2") do |config|
     v.cpus = 2
   end
 
+  # forward mitmproxy web port to host
+  config.vm.network "forwarded_port", guest: 8081, host: 8081
+
   config.vm.provision "shell",
     inline: "sudo apt-get update >>/dev/null && sudo apt-get install -y curl vim git >>/dev/null"
 
@@ -22,6 +25,10 @@ Vagrant.configure("2") do |config|
   
   config.vm.provision "shell",
     inline: "grep 'complete -C .* terraform' /home/vagrant/.bashrc >>/dev/null || terraform -install-autocomplete", privileged: false
+
+  # use the "--provion-with mitmproxy" flag ro run this.
+  config.vm.provision "mitmproxy", type: "shell",
+    path: "./scripts/install_mitmproxy.sh", privileged: false, run: "never"
 
   if FileTest.exist?("#{ENV["HOME"]}/.terraformrc")
     config.vm.provision "file", source: "~/.terraformrc", destination: ".terraformrc"
