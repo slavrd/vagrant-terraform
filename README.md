@@ -2,6 +2,8 @@
 
 A vagrant project that builds a virtual box machine with Ubuntu OS and terraform and some basic tools installed.
 
+Optionally `mitmproxy` can be set up to allow inspection of the terraform HTTP requests.
+
 ## Prerequisites
 
 * Install VirtualBox - [instructions](https://www.virtualbox.org/wiki/Downloads)
@@ -38,3 +40,15 @@ tf_ver=0.12.2 vagrant provision # will re-run all provisioning
 ```Bash
 vagrant destroy -f # does not prompt for confirmation
 ```
+
+## Mitmproxy
+
+Mitmproxy can be set up to inspect the HTTP requests made by Terraform. It is installed by running an additional vagrant provisioner.
+
+```bash
+vagrant provision --provision-with mitmproxy
+```
+
+This will install the mitmproxy, set up CA certificate and start the web interface on port `8081` which is forwarded to the host machine.
+
+To access the mitmproxy open `http://localhost:8081` in the browser on your host machine.
