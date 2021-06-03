@@ -30,7 +30,10 @@ Vagrant.configure("2") do |config|
   config.vm.provision "mitmproxy", type: "shell",
     path: "./scripts/install_mitmproxy.sh", privileged: false, run: "never"
 
-  if FileTest.exist?("#{ENV["HOME"]}/.terraformrc")
+  if FileTest.exist?("#{ENV["HOME"]}/.terraform.d/credentials.tfrc.json")
+    config.vm.provision "shell", inline: "[ ! -d /home/vagrant/.terraform.d/ ] && mkdir /home/vagrant/.terraform.d/ && chown vagrant:vagrant /home/vagrant/.terraform.d/ || exit 0"
+    config.vm.provision "file", source: "#{ENV["HOME"]}/.terraform.d/credentials.tfrc.json", destination: "/home/vagrant/.terraform.d/credentials.tfrc.json"
+  elsif FileTest.exist?("#{ENV["HOME"]}/.terraformrc")
     config.vm.provision "file", source: "~/.terraformrc", destination: ".terraformrc"
   end
 
