@@ -41,5 +41,10 @@ Vagrant.configure("2") do |config|
     config.vm.provision "shell", inline: "[ ! -d /home/vagrant/.aws ] && mkdir /home/vagrant/.aws && chown vagrant:vagrant /home/vagrant/.aws || exit 0"
     config.vm.provision "file", source: "#{ENV["HOME"]}/.aws/credentials", destination: "/home/vagrant/.aws/credentials"
   end
+
+  if FileTest.exist?("#{ENV["HOME"]}/.ssh/id_rsa")
+    config.vm.provision "shell", inline: "[ ! -d /home/vagrant/.ssh/ ] && mkdir /home/vagrant/.ssh/ && chown vagrant:vagrant /home/vagrant/.ssh/ || exit 0"
+    config.vm.provision "file", source: "#{ENV["HOME"]}/.ssh/id_rsa", destination: "/home/vagrant/.ssh/id_rsa"
+  end
            
 end
