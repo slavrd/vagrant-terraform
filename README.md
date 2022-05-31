@@ -52,3 +52,15 @@ vagrant provision --provision-with mitmproxy
 This will install the mitmproxy, set up CA certificate and start the web interface on port `8081` which is forwarded to the host machine.
 
 To access the mitmproxy open `http://localhost:8081` in the browser on your host machine.
+
+### Mitmproxy Use Cases Examples
+
+In certain situations it may be useful to change the arguments for the Mitmproxy start command. This can be done by changing the appropriate line in the [install script](scripts/install_mitmproxy.sh). 
+
+This section contains example use cases and commands
+
+* There is a need to modify the server response 
+
+```
+mitmweb --web-host '*' --modify-body :~s:<pattern to replace>:<replacement>  2>&1>/home/vagrant/.mitmproxy/log.txt &
+```
